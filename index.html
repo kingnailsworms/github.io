@@ -1,12 +1,721 @@
 <!DOCTYPE html>
-<html>
+<html lang="de">
 <head>
-  <title>Hallo Welt</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>King Nails Worms – Nails & Lashes</title>
+  <meta name="description" content="King Nails Worms – Professionelles Nagelstudio im Kaiserpassage, Korngasse 2, 67457 Worms. Nägel, Maniküre, Pediküre, Wimpernverlängerung.">
+  <style>
+    :root {
+      --bg-dark: #050608;
+      --bg-card: #111218;
+      --gold: #d9b56c;
+      --gold-soft: #f4e2b8;
+      --text-main: #f5f5f5;
+      --text-muted: #b8bcc7;
+      --accent: #e85f8a;
+      --border-soft: rgba(255, 255, 255, 0.06);
+      --shadow-soft: 0 18px 45px rgba(0,0,0,0.65);
+      --radius-xl: 22px;
+      --radius-full: 999px;
+      --max-width: 1120px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #22263a 0, #050608 55%);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* Layout */
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .wrapper {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    /* Header */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(to bottom, rgba(5,6,8,0.96), rgba(5,6,8,0.82), transparent);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.05rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .brand-logo {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid rgba(217,181,108,0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      background: radial-gradient(circle at 30% 0%, #ffe9b5, #b38132);
+      color: #201408;
+      font-weight: 700;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 16px;
+      font-size: 0.92rem;
+    }
+
+    .nav-links a {
+      padding: 6px 12px;
+      border-radius: 999px;
+      color: var(--text-muted);
+      border: 1px solid transparent;
+      transition: all 0.18s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold-soft);
+      border-color: rgba(217,181,108,0.45);
+      background: rgba(217,181,108,0.06);
+    }
+
+    .nav-cta {
+      padding: 7px 16px;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(217,181,108,0.7);
+      background: radial-gradient(circle at top left, #f4e2b8 0, #a36a26 50%, #513016 100%);
+      color: #1a1206;
+      font-weight: 600;
+      font-size: 0.9rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+      display: none;
+    }
+
+    .nav-cta:hover {
+      filter: brightness(1.06);
+      transform: translateY(-1px);
+    }
+
+    /* Hero */
+
+    .hero {
+      padding: 40px 16px 32px;
+    }
+
+    .hero-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 32px;
+      align-items: center;
+    }
+
+    .hero-chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(217,181,108,0.8);
+      background: rgba(10,12,16,0.85);
+      font-size: 0.75rem;
+      color: var(--gold-soft);
+    }
+
+    .chip-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gold-soft);
+    }
+
+    .hero-title {
+      font-size: clamp(2.1rem, 4vw, 2.8rem);
+      line-height: 1.1;
+      margin-bottom: 14px;
+    }
+
+    .hero-title span {
+      color: var(--gold-soft);
+    }
+
+    .hero-subtitle {
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      max-width: 440px;
+      margin-bottom: 20px;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 22px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .hero-meta strong {
+      color: var(--gold-soft);
+      font-weight: 600;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .btn-primary {
+      padding: 9px 20px;
+      border-radius: var(--radius-full);
+      background: linear-gradient(135deg, #f4e2b8, #b57b2a);
+      border: 1px solid rgba(217,181,108,0.8);
+      color: #1a1206;
+      font-weight: 600;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: var(--shadow-soft);
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.06);
+    }
+
+    .btn-ghost {
+      padding: 9px 18px;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(9,11,15,0.8);
+      color: var(--text-main);
+      font-size: 0.92rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    .btn-ghost:hover {
+      border-color: rgba(217,181,108,0.5);
+      color: var(--gold-soft);
+    }
+
+    .hero-note {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .hero-note span {
+      color: var(--gold-soft);
+    }
+
+    .hero-media {
+      position: relative;
+    }
+
+    .hero-card {
+      background: radial-gradient(circle at top left, #1b1d29, #080910);
+      border-radius: 26px;
+      padding: 16px;
+      border: 1px solid rgba(255,255,255,0.06);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+    }
+
+    .hero-image {
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .hero-image-placeholder {
+      width: 100%;
+      aspect-ratio: 4/5;
+      background: radial-gradient(circle at top, #f8c1d2 0, #e58db4 35%, #1b1015 80%);
+      position: relative;
+    }
+
+    .hero-image-placeholder::after {
+      content: "King Nails • Worms";
+      position: absolute;
+      left: 10%;
+      bottom: 10%;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(5,6,8,0.82);
+      color: #fdf7f2;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,0.19);
+    }
+
+    .hero-tag {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(5,6,8,0.9);
+      color: var(--gold-soft);
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      border: 1px solid rgba(217,181,108,0.5);
+    }
+
+    .floating-card {
+      position: absolute;
+      left: -8px;
+      bottom: -10px;
+      transform: translateY(-12%);
+      background: rgba(5,6,8,0.96);
+      border-radius: 18px;
+      padding: 10px 12px;
+      border: 1px solid rgba(255,255,255,0.06);
+      font-size: 0.78rem;
+      width: 210px;
+      backdrop-filter: blur(10px);
+      color: var(--text-muted);
+    }
+
+    .floating-card strong {
+      color: var(--gold-soft);
+      font-size: 0.8rem;
+    }
+
+    .floating-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 6px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(217,181,108,0.09);
+      color: var(--gold-soft);
+      font-size: 0.72rem;
+    }
+
+    /* Sections */
+
+    section {
+      padding: 28px 16px;
+    }
+
+    .section-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--gold-soft);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+    }
+
+    .section-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin-bottom: 18px;
+    }
+
+    /* Services grid */
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border-radius: var(--radius-xl);
+      padding: 16px 16px 14px;
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.55);
+    }
+
+    .card h3 {
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    .card p {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .price-tag {
+      font-size: 0.9rem;
+      color: var(--gold-soft);
+      font-weight: 600;
+    }
+
+    .chip-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .chip-small {
+      font-size: 0.72rem;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      color: var(--text-muted);
+    }
+
+    /* Highlight row */
+
+    .highlight-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 16px;
+      margin-top: 12px;
+    }
+
+    .highlight-box {
+      background: linear-gradient(135deg, #19131c, #251b28);
+      border-radius: var(--radius-xl);
+      padding: 16px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .highlight-box h3 {
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    .bullet-list {
+      list-style: none;
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      display: grid;
+      gap: 4px;
+    }
+
+    .bullet-list li::before {
+      content: "•";
+      color: var(--gold-soft);
+      margin-right: 6px;
+    }
+
+    /* Color chips */
+
+    .color-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .color-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(4,5,8,0.9);
+      border: 1px solid var(--border-soft);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .color-dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.5);
+    }
+
+    /* Contact */
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 18px;
+      margin-top: 10px;
+    }
+
+    .contact-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-xl);
+      padding: 16px;
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+      font-size: 0.9rem;
+    }
+
+    .contact-card h3 {
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+
+    .contact-line {
+      margin-bottom: 6px;
+      color: var(--text-muted);
+    }
+
+    .contact-line strong {
+      color: var(--gold-soft);
+      font-weight: 600;
+    }
+
+    .contact-cta {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: rgba(1,200,106,0.12);
+      color: #4bec9b;
+      border: 1px solid rgba(1,200,106,0.4);
+      font-size: 0.78rem;
+    }
+
+    iframe {
+      width: 100%;
+      border: 0;
+      border-radius: var(--radius-xl);
+      min-height: 220px;
+      box-shadow: 0 14px 40px rgba(0,0,0,0.85);
+    }
+
+    /* Footer */
+
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      background: #050607;
+      padding: 14px 16px 18px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .footer-inner a {
+      color: var(--gold-soft);
+    }
+
+    /* Responsive */
+
+    @media (max-width: 880px) {
+      .hero-inner,
+      .cards-grid,
+      .highlight-row,
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero {
+        padding-top: 26px;
+      }
+
+      .hero-media {
+        order: -1;
+      }
+
+      .hero-inner {
+        gap: 22px;
+      }
+
+      .card {
+        padding: 14px 14px 12px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav-links {
+        display: none;
+      }
+      .nav-cta {
+        display: inline-flex;
+      }
+      header {
+        background: rgba(5,6,8,0.96);
+      }
+      .hero-inner {
+        text-align: left;
+      }
+      .hero-actions {
+        justify-content: flex-start;
+      }
+      .hero-meta {
+        gap: 8px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero {
+        padding-inline: 12px;
+      }
+      section {
+        padding-inline: 12px;
+      }
+      .card,
+      .contact-card,
+      .highlight-box {
+        border-radius: 18px;
+      }
+    }
+  </style>
 </head>
 <body>
+<div class="page">
 
-  <h1>Hallo Welt!</h1>
-  <p>Dies ist meine erste Webseite.</p>
+  <!-- Header -->
+  <header>
+    <nav class="nav">
+      <div class="brand">
+        <div class="brand-logo">KN</div>
+        <div>
+          <div style="font-size:0.8rem;color:var(--text-muted)">Kaiserpassage • Worms</div>
+          <div style="font-size:0.9rem;">King Nails</div>
+        </div>
+      </div>
+      <div class="nav-links">
+        <a href="#home">Start</a>
+        <a href="#services">Leistungen</a>
+        <a href="#prices">Preise</a>
+        <a href="#colors">Farben</a>
+        <a href="#contact">Kontakt</a>
+      </div>
+      <a class="nav-cta" href="#contact">Termin anfragen</a>
+    </nav>
+  </header>
 
-</body>
-</html>
+  <!-- Hero -->
+  <main id="home" class="hero">
+    <div class="hero-inner">
+
+      <div>
+        <div class="hero-chip-row">
+          <div class="chip">
+            <span class="chip-dot"></span>
+            Nails • Lashes • Beauty
+          </div>
+          <div class="chip">
+            ⭐ 4,9 / 5 auf Google (in Planung)
+          </div>
+        </div>
+
+        <h1 class="hero-title">
+          King Nails Worms<br />
+          <span>Schöne Nägel, schöne Zeit.</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          Modernes Nagelstudio in der Kaiserpassage, direkt neben H&amp;M. 
+          Hochwertige Produkte (u.a. MSE) und präzise Arbeit für Nägel, die lange halten.
+        </p>
+
+        <div class="hero-meta">
+          <div><strong>Adresse:</strong> Korngasse 2, 67457 Worms (Kaiserpassage)</div>
+          <div><strong>Sprachen:</strong> Deutsch • Englisch • Vietnamesisch</div>
+        </div>
+
+        <div class="hero-actions">
+          <a class="btn-primary" href="#contact">
+            Termin / Anfrage
+            <span>→</span>
+          </a>
+          <a class="btn-ghost" href="https://www.instagram.com/kingnails_worms" target="_blank" rel="noopener">
+            Instagram ansehen
+          </a>
+        </div>
+
+        <div class="hero-note">
+          Öffnungszeiten &amp; Preise finden Sie weiter unten.  
+          <span>Walk-ins sind je nach Auslastung möglich.</span>
+        </div>
+      </div>
+
+     
